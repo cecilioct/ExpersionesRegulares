@@ -7,6 +7,7 @@ test_str = ("La velocidad de la luz en el vacío es una constante universal con 
 
 matches = re.finditer(regex, test_str, re.MULTILINE)
 
+
 for matchNum, match in enumerate(matches, start=1):
     
     print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
