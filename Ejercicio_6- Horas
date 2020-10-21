@@ -1,0 +1,21 @@
+import re
+
+regex = r"\d+[:][0-59]+"
+
+test_str = ("Así como existe una hora apropiada para realizar cada actividad durante el día, es necesario conocer a qué hora debemos evitar ciertas acciones que podrían perjudicar nuestra calidad de vida.\n\n"
+	"06:00, la peor hora para dormir: Si nos acostamos entre las 22:00 y 23:00 horas, es el momento justo de levantarse, pues los seres humanos estamos programados internamente para dormir entre siente y ocho horas. Además, al levantarnos con tiempo nos evitamos las desagradables apuros, que resultan perjudiciales para nuestra salud.\n\n"
+	"07:00, el momento menos indicado para tener sexo sin protección: El nivel de testosterona en el hombre y de estrógenos en la mujer están por las nubes. Como consecuencia, el deseo se dispara de tal manera que las probabilidades de tener relaciones sin protección aumentan, lo que podría generar un embarazo no planificado. Esto ocurre, claro está, si nos encontramos en nuestros días fértiles.\n\n"
+	"08:00, tiempo inadecuado para estresarse: Si sometemos nuestro cuerpo a tensiones excesivas al poco tiempo de levantarnos, podríamos sufrir un accidente cardiovascular, ya que a tempranas horas del día el cuerpo aun no termina de reaccionar luego del descanso nocturno.\n\n"
+	"11:00, la peor hora para comer dulces: Si no desayunamos bien, es probable que durante esta hora suframos un bajón de azúcar y solemos saciarlo comiendo gran cantidad de golosinas que, a la larga pueden afectar nuestros niveles de insulina. Lo mejor es comer una fruta o algún snack saludable que ayude a nivelar esos desagradables bajones sin dañar nuestra salud.\n\n"
+	"13:00, una hora no recomendada para el deporte: Nuestro organismo sufre un descenso de energía entre las 13:00 y las 14:00 horas, produciéndose unos minutos propicios para el reposo y no para ejercicios forzados que puedan debilitarnos. Durante la siguiente hora, una caminata relajada sienta bastante bien.")
+
+matches = re.finditer(regex, test_str, re.MULTILINE)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
