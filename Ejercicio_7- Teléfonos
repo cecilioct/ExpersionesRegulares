@@ -1,0 +1,18 @@
+import re
+
+regex = r"(\d){10}"
+
+test_str = ("CIUDAD DE MÉXICO. Diez números de teléfonos móviles han sido utilizados para cometer 4 mil 769 intentos extorsión, reveló el Consejo Ciudadano de la Ciudad de México.\n\n"
+	"\"Los números registran de mayor a menor medida de más de 700 a más de 300 reportes, y se encuentran relacionados principalmente con la modalidad que usa el argumento de un grupo del crimen organizado que amenaza a la víctima y sus familiares\", dijo el organismo que encabeza Luis Werman.\n\n"
+	"Se trata de los números: 5529296848, con 713 reportes; 3335550000, con 622 denuncias; 5566042814, con 552; 5513497278, con 498; 6691210000, con 495; 5513509954, con 493; 6621722423, con 373; 5512095752, con 346; 5553060651, con 344; y 5530020000, con 333.")
+
+matches = re.finditer(regex, test_str, re.MULTILINE)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
