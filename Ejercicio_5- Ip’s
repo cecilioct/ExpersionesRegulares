@@ -1,0 +1,17 @@
+import re
+
+regex = r"(\d+[\.]){3}\d+"
+
+test_str = ("La red 194.28.12.0 (la de la izquierda) contiene equipos con direcciones IP que van de 194.28.12.1 a 194.28.12.4. La red 178.12.0.0 (la de la derecha) incluye equipos con direcciones IP que van de 178.12.77.1 a 178.12.77.6. En este caso, las redes se escriben 194.28.12 y 178.12.77, y cada equipo dentro de la red se numera de forma incremental. \n\n"
+	"Imaginemos una red escrita 58.0.0.0. Los equipos de esta red podrían tener direcciones IP que van de 58.0.0.1 a 58.255.255.254. Por lo tanto, se trata de asignar los números de forma que haya una estructura en la jerarquía de los equipos y los servidores. Así, cuanto menor sea el número de bits reservados en la red, mayor será el número de equipos que puede contener. ")
+
+matches = re.finditer(regex, test_str, re.MULTILINE)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
