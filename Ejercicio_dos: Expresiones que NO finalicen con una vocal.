@@ -1,10 +1,16 @@
-$re = '/[aA-zZ]{7,}/m';
-$str = 'En el futuro, creemos que habrá una creciente comunicación de las empresas que cotizan en bolsa sobre la inteligencia artificial. Como inversores, vemos nuestro papel en la distinción entre el bombo y la realidad y en el desarrollo y la comprensión de hasta qué punto la IA puede realmente contribuir al valor para el accionista.
-En ODDO BHF Asset Management hemos creado una nueva forma de gestión: un nuevo fondo temático que integra la inteligencia artificial en su proceso de inversión a través de algoritmos basados en Big Data, supervisado y coordinado por un equipo dedicado de experimentados gestores de cartera. Este fondo representa una innovación revolucionaria en la gestión de activos. Hemos establecido un proceso de inversión que combine la IA y nuestra larga experiencia en la gestión cuantitativa de acciones con el objetivo de proporcionar a nuestros clientes una solución innovadora para la generación de alfa a largo plazo
-Incluso en el sector financiero, la inteligencia artificial evoluciona a estos niveles. Se han creado índices especiales para esta tendencia en curso: El STOXX AI ya ha generado un rendimiento superior significativo (frente al MSCI World) desde su lanzamiento a finales de 2013. Es notable que este rendimiento superior se ha ampliado desde mediados de 2016, coincidiendo con el momento en que fue posible identificar claramente algunas empresas basadas en el tema de la inteligencia artificial.
-';
+import re
 
-preg_match_all($re, $str, $matches, PREG_SET_ORDER, 0);
+regex = r"\w+[b-df-hj-np-tv-z]\b"
 
-// Print the entire match result
-var_dump($matches);
+test_str = "Observa que la única coincidencia de dígitos está dada por el año mencionado. Esto es así dado que después del número 58 hay caracteres de palabra (letras, números o guión bajo), es decir, no hay un rompimiento de palabra. Sin embargo, después del número 2019 hay un punto, que no es un caractér de palabra por lo cual si se produce la coincidencia. "
+
+matches = re.finditer(regex, test_str, re.MULTILINE)
+
+for matchNum, match in enumerate(matches, start=1):
+    
+    print ("Match {matchNum} was found at {start}-{end}: {match}".format(matchNum = matchNum, start = match.start(), end = match.end(), match = match.group()))
+    
+    for groupNum in range(0, len(match.groups())):
+        groupNum = groupNum + 1
+        
+        print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
